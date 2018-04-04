@@ -18,8 +18,7 @@ c) The Data Layer just consist of a single entity named Annotation with 4 attrib
 d) Ideally the data layer will be responsible for creation and deletion and fetching of the objects from Core Data. Those are added in SearchResultsViewController which is not where all that logic should reside considering it is a UILayer which is leading to a Massive View Controler in the current implementation.
 e) Also, in the current implemtation, the CoreDataStack is DI into the view controller as they are needed. 
 
-- Service Layer
-
+- Service Layer:
 a) Service layer has just has one NetworkManager Object in the current implementation. I deally I would have a more abstract Netowrk Client which just make the calls to the API using URLSession or Alamofire based on the provided URL Request and handles all the errors. And have a Seperate Service Objects for each API call which decorates and makes the URLRequest Objects based on that particular API requirement and send it to Network Client for make the call. But due to lack of time, I have made NetworkManager act as both, A NetworkClient and a Service Object. 
 
 - Business Layer: 
