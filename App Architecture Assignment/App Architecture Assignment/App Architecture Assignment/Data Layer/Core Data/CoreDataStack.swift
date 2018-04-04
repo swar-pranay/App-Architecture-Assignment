@@ -15,7 +15,7 @@ You will find lot of fatalError in this file since those are condition where you
 */
 class CoreDataStack {
 	
-	private static let modelName = "avenueCode"
+	private static let modelName = "appArchitecture"
 	
 	private(set) lazy var managedObjectContext: NSManagedObjectContext = {
 		

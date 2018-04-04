@@ -8,7 +8,6 @@
 
 import Foundation
 
-// AC prefix for Avenue Code
 /*
 Purpose: The purpose of this object is to hold on to the result so, that
 it could be passes around inside the entire app
