@@ -1,6 +1,6 @@
 //
 //  LocationSearchViewControllerTests.swift
-//  AvenueCodeChallengeTests
+//  App Architecture AssignmentTests
 //
 //  Created by Pranay Swar on 4/2/18.
 //  Copyright © 2018 Pranay Swar. All rights reserved.

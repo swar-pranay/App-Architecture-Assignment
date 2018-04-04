@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  AvenueCodeChallenge
+//  App Architecture Assignment
 //
 //  Created by Pranay Swar on 3/30/18.
 //  Copyright © 2018 Pranay Swar. All rights reserved.
