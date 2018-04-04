@@ -1,5 +1,6 @@
 # App-Architecture-Assignment
 Another assignment to demonstrate the general architecture of an iOS app. Note: This project is no where near to an ideal project should be. It just demonstrates different layers of achitecture and their interworking.
+
 The App is divided into UILayer, DataLayer, ServiceLayer and BusinessLayer 
 - The UILayer with stroyboards, View and ViewController 
 - The Datalayer persistence is done using Core Data.
