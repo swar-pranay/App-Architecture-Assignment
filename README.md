@@ -29,7 +29,7 @@ b) The business layer that perfoms the function based on the business logic of t
 
 
 TODO:  
-- Trim down LocationSearchViewController and SearchResultsViewController and give it much less resposibility.
+- Trim down SearchResultsViewController and give it lesser resposibility.
 - Have someone else act as a MKMapViewDelegate
 - Have Extension in different file. This is also, useful when working in a team
 - Have swift lint integrated so that the code formatting is taken care of.
