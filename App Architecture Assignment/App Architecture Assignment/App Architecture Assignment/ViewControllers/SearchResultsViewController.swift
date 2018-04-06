@@ -17,14 +17,15 @@ class SearchResultsViewController: UIViewController {
 	var allAnnotations: [ACAnnotation] = []
 	var selectedAnnotationId: String?
 	var displayType: DisplayResultType = .allResult
+	var coreDataStack: CoreDataStack?
+
 	private let rangeRadius: CLLocationDistance = 100_000
 	private var isSaved = true
 	private var savedAnnotation: Annotation?
-	var coreDataStack: CoreDataStack?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		self.title = "All Result"
+		self.title = Constant.SearchResultsView.allResultsText
 		self.mapView.delegate = self
 		self.addAnnotationsToMap()
 		if displayType == .singleResult {
@@ -39,14 +40,17 @@ class SearchResultsViewController: UIViewController {
 		self.navigationItem.rightBarButtonItem = nil
 		fetchAnnotationWithId(selectedAnnotationId)
 		if !isSaved {
-			self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveClicked))
+			self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
+																	 target: self,
+																	 action: #selector(saveClicked))
 		} else {
-			self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trashClicked))
+			self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash,
+																	 target: self,
+																	 action: #selector(trashClicked))
 		}
 	}
 	
 	@objc private func saveClicked() {
-		
 		guard let moc = coreDataStack?.managedObjectContext, let selectedAnnotationId = selectedAnnotationId else {
 			return
 		}
@@ -63,6 +67,7 @@ class SearchResultsViewController: UIViewController {
 		newAnnotation.name = selectedACAnnotation.title
 		newAnnotation.lattitude = selectedACAnnotation.lat
 		newAnnotation.longitude = selectedACAnnotation.long
+		
 		coreDataStack?.save()
 		refreshSaveEditButton()
 	}
@@ -108,7 +113,6 @@ class SearchResultsViewController: UIViewController {
 	private func addAnnotationsToMap() {
 		
 		let mkAnnotations = allAnnotations.map { (annotation) -> MKAnnotation in
-			
 			let newAnnotation = MKResultAnnotation(withTitle: annotation.title,
 												   andCoordinates: CLLocationCoordinate2D(latitude: annotation.lat,
 																						  longitude: annotation.long),

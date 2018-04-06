@@ -23,7 +23,6 @@ class LocationSearchViewController: UITableViewController {
 	var currentSearchController: UISearchController?
 	var locationSearchManager: LocationSearchManager?
 
-	private static let cellIdentifier = "locationSearchCellIdentifier"
 	private var allAnnotations: [ACAnnotation] = []
 	
     override func viewDidLoad() {
@@ -45,7 +44,7 @@ class LocationSearchViewController: UITableViewController {
 		currentSearchController = searchController
 		searchController.loadViewIfNeeded()
 		searchController.searchBar.sizeToFit()
-		searchController.searchBar.placeholder = "Search on Google Maps"
+		searchController.searchBar.placeholder = Constant.LocationSearchView.placeHolderText
 		definesPresentationContext = true
 		
 		// setting up the search results delegate
@@ -89,7 +88,7 @@ class LocationSearchViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView,
 							cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: LocationSearchViewController.cellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constant.LocationSearchView.cellIdentifier, for: indexPath)
 		
 		if allAnnotations.count > 1 && indexPath.section == 0 {
 			cell.textLabel?.text = "Display All on Map"
