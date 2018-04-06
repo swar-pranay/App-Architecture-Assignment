@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			fatalError("incorrect initial View Controller")
 		}
 		
+		// App delegate should not be responsible for creating and injecting dependencies. But for the sake of simplicity and brevity, I am making the AppDelegate inject it.
+		locationSearchVC.locationSearchManager = LocationSearchManager()
 		locationSearchVC.coreDataStack = coreDataStack
 		
 		window?.rootViewController = locationSearchNC

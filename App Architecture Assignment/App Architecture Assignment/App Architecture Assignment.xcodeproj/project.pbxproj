@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D5FD73A2077D89100346FA4 /* LocationSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FD7392077D89100346FA4 /* LocationSearchManager.swift */; };
 		8DBCDCCC207561830094FD43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DBCDCAF207561820094FD43 /* LaunchScreen.storyboard */; };
 		8DBCDCCD207561830094FD43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DBCDCB1207561820094FD43 /* Main.storyboard */; };
 		8DBCDCCE207561830094FD43 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBCDCB5207561820094FD43 /* CoreDataStack.swift */; };
-		8DBCDCCF207561830094FD43 /* avenueCode.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DBCDCB7207561820094FD43 /* avenueCode.xcdatamodeld */; };
+		8DBCDCCF207561830094FD43 /* appArchitecture.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DBCDCB7207561820094FD43 /* appArchitecture.xcdatamodeld */; };
 		8DBCDCD3207561830094FD43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DBCDCBE207561830094FD43 /* Assets.xcassets */; };
 		8DBCDCD4207561830094FD43 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8DBCDCBF207561830094FD43 /* Info.plist */; };
 		8DBCDCD5207561830094FD43 /* SearchResultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBCDCC1207561830094FD43 /* SearchResultsManager.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8D5FD7392077D89100346FA4 /* LocationSearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchManager.swift; sourceTree = "<group>"; };
 		8DBCDC8B207561210094FD43 /* App Architecture Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "App Architecture Assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DBCDC9F207561220094FD43 /* App Architecture AssignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "App Architecture AssignmentTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DBCDCA5207561220094FD43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -144,7 +146,7 @@
 		8DBCDCB6207561820094FD43 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				8DBCDCB7207561820094FD43 /* avenueCode.xcdatamodeld */,
+				8DBCDCB7207561820094FD43 /* appArchitecture.xcdatamodeld */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -161,6 +163,7 @@
 		8DBCDCC0207561830094FD43 /* BusinessLayer */ = {
 			isa = PBXGroup;
 			children = (
+				8D5FD7392077D89100346FA4 /* LocationSearchManager.swift */,
 				8DBCDCC1207561830094FD43 /* SearchResultsManager.swift */,
 				8DBCDCC2207561830094FD43 /* ACAnnotation.swift */,
 			);
@@ -308,12 +311,13 @@
 				8DBCDCDA207561830094FD43 /* NetworkManager.swift in Sources */,
 				8DBCDCD5207561830094FD43 /* SearchResultsManager.swift in Sources */,
 				8DBCDCD7207561830094FD43 /* LocationSearchViewController.swift in Sources */,
-				8DBCDCCF207561830094FD43 /* avenueCode.xcdatamodeld in Sources */,
+				8DBCDCCF207561830094FD43 /* appArchitecture.xcdatamodeld in Sources */,
 				8DBCDCD6207561830094FD43 /* ACAnnotation.swift in Sources */,
 				8DBCDCD9207561830094FD43 /* MKResultAnnotation.swift in Sources */,
 				8DBCDCD8207561830094FD43 /* SearchResultsViewController.swift in Sources */,
 				8DBCDCDB207561830094FD43 /* AppDelegate.swift in Sources */,
 				8DBCDCCE207561830094FD43 /* CoreDataStack.swift in Sources */,
+				8D5FD73A2077D89100346FA4 /* LocationSearchManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,13 +570,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		8DBCDCB7207561820094FD43 /* avenueCode.xcdatamodeld */ = {
+		8DBCDCB7207561820094FD43 /* appArchitecture.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				8DBCDCB8207561820094FD43 /* avenueCode.xcdatamodel */,
 			);
 			currentVersion = 8DBCDCB8207561820094FD43 /* avenueCode.xcdatamodel */;
-			path = avenueCode.xcdatamodeld;
+			path = appArchitecture.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
