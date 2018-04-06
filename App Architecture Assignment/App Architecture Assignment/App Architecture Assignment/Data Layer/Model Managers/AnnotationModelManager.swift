@@ -60,5 +60,6 @@ class AnnotationModelManager {
 			return
 		}
 		coreDataStack.managedObjectContext.delete(tobeDeletedAnnotation)
+		coreDataStack.save()
 	}
 }
