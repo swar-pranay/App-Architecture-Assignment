@@ -145,7 +145,7 @@ class LocationSearchViewController: UITableViewController {
 
 extension LocationSearchViewController: LocationSearchManagerProtocol {
 	
-	func didUpdateResults(locationSearchManager: LocationSearchManager,
+	func didUpdateResults(locationSearchManager: LocationSearchManager?,
 						  annotationResults: [ACAnnotation]) {
 		DispatchQueue.main.async {
 			self.allAnnotations = annotationResults

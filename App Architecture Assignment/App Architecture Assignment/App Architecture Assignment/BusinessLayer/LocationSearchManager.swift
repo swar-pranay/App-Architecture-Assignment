@@ -9,7 +9,7 @@
 import UIKit
 
 protocol LocationSearchManagerProtocol: class {
-	func didUpdateResults(locationSearchManager: LocationSearchManager,
+	func didUpdateResults(locationSearchManager: LocationSearchManager?,
 						  annotationResults: [ACAnnotation])
 }
 
@@ -39,7 +39,7 @@ class LocationSearchManager: NSObject, UISearchResultsUpdating, UISearchBarDeleg
 
 	private func searchFortext(_ searchText: String) {
 		SearchResultsManager.getSearchResultsForTest(searchText) { [weak self] (results) in
-			self?.delegate?.didUpdateResults(locationSearchManager: self!, annotationResults: results)
+			self?.delegate?.didUpdateResults(locationSearchManager: self, annotationResults: results)
 		}
 	}
 	

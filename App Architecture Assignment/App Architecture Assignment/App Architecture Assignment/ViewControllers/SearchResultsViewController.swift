@@ -19,13 +19,12 @@ class SearchResultsViewController: UIViewController {
 	var displayType: DisplayResultType = .allResult
 	var coreDataStack: CoreDataStack?
 
-	private let rangeRadius: CLLocationDistance = 100_000
-	private var isSaved = true
 	private var savedAnnotation: Annotation?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.title = Constant.SearchResultsView.allResultsText
+		// This view controller should not be the delegate for MapView.
 		self.mapView.delegate = self
 		self.addAnnotationsToMap()
 		if displayType == .singleResult {
@@ -37,79 +36,56 @@ class SearchResultsViewController: UIViewController {
 		guard let selectedAnnotationId = selectedAnnotationId else {
 			return
 		}
+		
 		self.navigationItem.rightBarButtonItem = nil
-		fetchAnnotationWithId(selectedAnnotationId)
-		if !isSaved {
-			self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
-																	 target: self,
-																	 action: #selector(saveClicked))
-		} else {
-			self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash,
-																	 target: self,
-																	 action: #selector(trashClicked))
+		AnnotationModelManager.fetchAnnotationWithId(selectedAnnotationId, usingStack: coreDataStack) { (annotation) in
+			
+			if let fetchedAnnotation = annotation {
+				self.savedAnnotation = fetchedAnnotation
+				self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash,
+																		 target: self,
+																		 action: #selector(trashClicked))
+			} else {
+				self.savedAnnotation = nil
+				self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
+																		 target: self,
+																		 action: #selector(saveClicked))
+			}
 		}
+		
 	}
 	
 	@objc private func saveClicked() {
-		guard let moc = coreDataStack?.managedObjectContext, let selectedAnnotationId = selectedAnnotationId else {
+		guard let selectedAnnotationId = selectedAnnotationId else {
 			return
 		}
-		
 		guard let selectedACAnnotation = allAnnotations.filter({$0.id == selectedAnnotationId}).first else {
 			print("Could not find ACAnnotation Object")
 			return
 		}
-		
-		// using Force Unwrap since its guranteed to be Annotation object 
-		let newAnnotation = NSEntityDescription.insertNewObject(forEntityName: "Annotation", into: moc) as! Annotation
-		
-		newAnnotation.identifier = selectedACAnnotation.id
-		newAnnotation.name = selectedACAnnotation.title
-		newAnnotation.lattitude = selectedACAnnotation.lat
-		newAnnotation.longitude = selectedACAnnotation.long
-		
-		coreDataStack?.save()
+		AnnotationModelManager.saveModel(selectedACAnnotation,
+										 usingStack: coreDataStack)
 		refreshSaveEditButton()
 	}
 	
 	@objc private func trashClicked() {
 		
-		let alertController = UIAlertController(title: "Warning", message: "Are you sure you want to delete the annotation", preferredStyle: .alert)
+		let alertController = UIAlertController(title: "Warning",
+												message: "Are you sure you want to delete the annotation",
+												preferredStyle: .alert)
 		let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-		let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-			self.deleteAnnotation()
-			self.refreshSaveEditButton()
+		let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] (action) in
+			guard let strongSelf = self else { return }
+			AnnotationModelManager.deleteAnnotation(strongSelf.savedAnnotation,
+													usingStack: strongSelf.coreDataStack)
+			strongSelf.refreshSaveEditButton()
 		}
 		alertController.addAction(cancelAction)
 		alertController.addAction(okAction)
-		
+
 		present(alertController, animated: true, completion: nil)
 	}
-	
-	private func fetchAnnotationWithId(_ id: String)  {
 		
-		let fetchRequest = NSFetchRequest<Annotation>(entityName: "Annotation")
-		fetchRequest.predicate = NSPredicate(format: "identifier == %@", id)
-		do {
-			let fetchResult = try coreDataStack?.managedObjectContext.fetch(fetchRequest)
-			if let fetchedAnnotation = fetchResult?.first {
-				isSaved = true
-				savedAnnotation = fetchedAnnotation
-			} else {
-				isSaved = false
-			}
-		} catch {
-			print("Could not complete the fetch request")
-		}
-	}
-	
-	private func deleteAnnotation() {
-		guard let tobeDeletedAnnotation = savedAnnotation else {
-			return
-		}
-		coreDataStack?.managedObjectContext.delete(tobeDeletedAnnotation)
-	}
-	
 	private func addAnnotationsToMap() {
 		
 		let mkAnnotations = allAnnotations.map { (annotation) -> MKAnnotation in
@@ -139,8 +115,7 @@ class SearchResultsViewController: UIViewController {
 			return
 		}
 		
-		let coordinateRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: selectedACAnnotation.lat,
-																						 longitude:selectedACAnnotation.long), rangeRadius, rangeRadius)
+		let coordinateRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2D(latitude: selectedACAnnotation.lat,longitude:selectedACAnnotation.long), Constant.SearchResultsView.rangeRadius, Constant.SearchResultsView.rangeRadius)
 		mapView.setRegion(coordinateRegion, animated: true)
 		
 		if let currentResultAnnotations = self.mapView.annotations as? [MKResultAnnotation] {

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import CoreLocation
 
 struct Constant {
 	
@@ -18,6 +18,7 @@ struct Constant {
 	
 	struct SearchResultsView {
 		static let allResultsText = "All Result"
+		static let rangeRadius: CLLocationDistance = 100_000
 	}
 	
 }
