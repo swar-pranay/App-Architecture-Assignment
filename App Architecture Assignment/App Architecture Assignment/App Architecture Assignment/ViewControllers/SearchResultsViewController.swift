@@ -70,11 +70,14 @@ class SearchResultsViewController: UIViewController {
 	
 	@objc private func trashClicked() {
 		
-		let alertController = UIAlertController(title: "Warning",
-												message: "Are you sure you want to delete the annotation",
+		let alertController = UIAlertController(title:
+			NSLocalizedString(Constant.SearchResultsView.deleteWarningTitle, comment: ""),
+												message:NSLocalizedString(Constant.SearchResultsView.deleteWarningMessage,
+																		  comment: ""),
 												preferredStyle: .alert)
-		let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-		let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] (action) in
+		
+		let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil)
+		let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] (action) in
 			guard let strongSelf = self else { return }
 			AnnotationModelManager.deleteAnnotation(strongSelf.savedAnnotation,
 													usingStack: strongSelf.coreDataStack)
@@ -147,7 +150,7 @@ extension SearchResultsViewController: MKMapViewDelegate {
 			return nil
 		}
 		
-		let reuseIdentifier = "marker"
+		let reuseIdentifier = Constant.SearchResultsView.annotationViewReuseIdentifier
 		var view: MKPinAnnotationView!
 		
 		if let dequedView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) as? MKPinAnnotationView {

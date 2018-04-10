@@ -29,7 +29,21 @@ class LocationSearchViewController: UITableViewController {
         super.viewDidLoad()
 		self.tableView.tableHeaderView = UIView()
 		self.tableView.tableFooterView = UIView()
-		
+		setUpSearchBar()
+    }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		currentSearchController?.isActive = true
+		currentSearchController?.hidesNavigationBarDuringPresentation = false
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		currentSearchController?.searchBar.becomeFirstResponder()
+	}
+	
+	func setUpSearchBar() {
 		let searchController = UISearchController(searchResultsController: nil)
 		if #available(iOS 9.1, *) {
 			searchController.obscuresBackgroundDuringPresentation = false
@@ -51,17 +65,6 @@ class LocationSearchViewController: UITableViewController {
 		searchController.searchResultsUpdater = locationSearchManager
 		searchController.searchBar.delegate = locationSearchManager
 		locationSearchManager?.delegate = self
-    }
-	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		currentSearchController?.isActive = true
-		currentSearchController?.hidesNavigationBarDuringPresentation = false
-	}
-	
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		currentSearchController?.searchBar.becomeFirstResponder()
 	}
 	
     // MARK: - Table view data source
@@ -91,7 +94,7 @@ class LocationSearchViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constant.LocationSearchView.cellIdentifier, for: indexPath)
 		
 		if allAnnotations.count > 1 && indexPath.section == 0 {
-			cell.textLabel?.text = "Display All on Map"
+			cell.textLabel?.text = Constant.LocationSearchView.displayAllString
 			return cell
 		}
 		
@@ -107,7 +110,7 @@ class LocationSearchViewController: UITableViewController {
 		if allAnnotations.count > 0 {
 			return ""
 		} else {
-			return "NO RESULTS"
+			return Constant.LocationSearchView.noResultsString
 		}
 	}
 	
