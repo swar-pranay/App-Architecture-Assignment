@@ -10,6 +10,7 @@
 		8D5FD73A2077D89100346FA4 /* LocationSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FD7392077D89100346FA4 /* LocationSearchManager.swift */; };
 		8D5FD73D2077EF0700346FA4 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FD73C2077EF0700346FA4 /* Constant.swift */; };
 		8D5FD7402077F6C500346FA4 /* AnnotationModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FD73F2077F6C500346FA4 /* AnnotationModelManager.swift */; };
+		8D93045A20817867005F8762 /* DataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D93045920817867005F8762 /* DataStoreManager.swift */; };
 		8DBCDCCC207561830094FD43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DBCDCAF207561820094FD43 /* LaunchScreen.storyboard */; };
 		8DBCDCCD207561830094FD43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DBCDCB1207561820094FD43 /* Main.storyboard */; };
 		8DBCDCCE207561830094FD43 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBCDCB5207561820094FD43 /* CoreDataStack.swift */; };
@@ -39,6 +40,7 @@
 		8D5FD7392077D89100346FA4 /* LocationSearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchManager.swift; sourceTree = "<group>"; };
 		8D5FD73C2077EF0700346FA4 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		8D5FD73F2077F6C500346FA4 /* AnnotationModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationModelManager.swift; sourceTree = "<group>"; };
+		8D93045920817867005F8762 /* DataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreManager.swift; sourceTree = "<group>"; };
 		8DBCDC8B207561210094FD43 /* App Architecture Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "App Architecture Assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DBCDC9F207561220094FD43 /* App Architecture AssignmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "App Architecture AssignmentTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DBCDCA5207561220094FD43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				8DBCDCB5207561820094FD43 /* CoreDataStack.swift */,
+				8D93045920817867005F8762 /* DataStoreManager.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				8DBCDCD5207561830094FD43 /* SearchResultsManager.swift in Sources */,
 				8D5FD7402077F6C500346FA4 /* AnnotationModelManager.swift in Sources */,
 				8DBCDCD7207561830094FD43 /* LocationSearchViewController.swift in Sources */,
+				8D93045A20817867005F8762 /* DataStoreManager.swift in Sources */,
 				8DBCDCCF207561830094FD43 /* appArchitecture.xcdatamodeld in Sources */,
 				8DBCDCD6207561830094FD43 /* ACAnnotation.swift in Sources */,
 				8DBCDCD9207561830094FD43 /* MKResultAnnotation.swift in Sources */,

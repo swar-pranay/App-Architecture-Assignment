@@ -13,7 +13,7 @@ import CoreData
 Purpose: This is the formation of the complete stack. Usually this stack would provide privateQueueMOC as well to run in background thread. But for the purpose of this app, MainQueueMOC is sufficient.
 You will find lot of fatalError in this file since those are condition where you are not suppose to get error or fail. If its failing at those point, the app or program is in inconsistent condition. 
 */
-class CoreDataStack {
+class CoreDataStack: DataStoreProtocol {
 	
 	private static let modelName = "appArchitecture"
 	

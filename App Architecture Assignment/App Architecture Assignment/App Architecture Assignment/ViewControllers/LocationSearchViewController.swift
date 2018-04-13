@@ -19,7 +19,7 @@ enum DisplayResultType {
 
 class LocationSearchViewController: UITableViewController {
 
-	var coreDataStack: CoreDataStack?
+	var dataStoreManager: DataStoreProtocol?
 	var currentSearchController: UISearchController?
 	var locationSearchManager: LocationSearchManager?
 
@@ -130,7 +130,7 @@ class LocationSearchViewController: UITableViewController {
 				assignSingleResultDisplayType(destinationVC,
 											  forSelectedIndexPath: selectedIndexPath)
 			}
-			destinationVC.coreDataStack = self.coreDataStack
+			destinationVC.dataStoreManager = self.dataStoreManager
 			destinationVC.allAnnotations = self.allAnnotations
 		}
 	}

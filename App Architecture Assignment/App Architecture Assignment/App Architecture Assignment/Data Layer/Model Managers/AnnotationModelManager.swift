@@ -14,14 +14,13 @@ class AnnotationModelManager {
 	private init() {}
 	
 	static func saveModel(_ annotation: ACAnnotation,
-									usingStack cdStack: CoreDataStack?) {
-		guard let coreDataStack = cdStack else {
+									usingManager stackManager: DataStoreProtocol?) {
+		guard let coreDataStack = stackManager else {
 			return
 		}
 		
 		// using Force Unwrap since its guranteed to be Annotation object
 		let newAnnotation = NSEntityDescription.insertNewObject(forEntityName: "Annotation", into: coreDataStack.managedObjectContext) as! Annotation
-		
 		newAnnotation.identifier = annotation.id
 		newAnnotation.name = annotation.title
 		newAnnotation.lattitude = annotation.lat
@@ -30,9 +29,9 @@ class AnnotationModelManager {
 	}
 	
 	static func fetchAnnotationWithId(_ annotationId: String,
-									  usingStack cdStack: CoreDataStack?,
+									  usingManager stackManager: DataStoreProtocol?,
 									  withCompletion completion: (Annotation?) -> Void) {
-		guard let coreDataStack = cdStack else {
+		guard let coreDataStack = stackManager else {
 			completion(nil)
 			return
 		}
@@ -54,9 +53,9 @@ class AnnotationModelManager {
 	
 	
 	static func deleteAnnotation(_ annotation: Annotation?,
-								 usingStack cdStack: CoreDataStack?) {
+								 usingManager stackManager: DataStoreProtocol?) {
 		guard let tobeDeletedAnnotation = annotation,
-			let coreDataStack = cdStack else {
+			let coreDataStack = stackManager else {
 			return
 		}
 		coreDataStack.managedObjectContext.delete(tobeDeletedAnnotation)

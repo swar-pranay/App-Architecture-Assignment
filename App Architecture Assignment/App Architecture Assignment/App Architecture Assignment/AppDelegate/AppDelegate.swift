@@ -26,7 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		// App delegate should not be responsible for creating and injecting dependencies. But for the sake of simplicity and brevity, I am making the AppDelegate inject it.
 		locationSearchVC.locationSearchManager = LocationSearchManager()
-		locationSearchVC.coreDataStack = coreDataStack
+		let dataStoreManager = DataStoreManager(withDataStack: coreDataStack)
+		locationSearchVC.dataStoreManager = dataStoreManager
 		
 		window?.rootViewController = locationSearchNC
 		

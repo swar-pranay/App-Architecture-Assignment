@@ -8,7 +8,6 @@
 
 import UIKit
 import MapKit
-import CoreData
 
 class SearchResultsViewController: UIViewController {
 
@@ -17,7 +16,7 @@ class SearchResultsViewController: UIViewController {
 	var allAnnotations: [ACAnnotation] = []
 	var selectedAnnotationId: String?
 	var displayType: DisplayResultType = .allResult
-	var coreDataStack: CoreDataStack?
+	var dataStoreManager: DataStoreProtocol?
 
 	private var savedAnnotation: Annotation?
 
@@ -38,7 +37,8 @@ class SearchResultsViewController: UIViewController {
 		}
 		
 		self.navigationItem.rightBarButtonItem = nil
-		AnnotationModelManager.fetchAnnotationWithId(selectedAnnotationId, usingStack: coreDataStack) { (annotation) in
+		AnnotationModelManager.fetchAnnotationWithId(selectedAnnotationId,
+													 usingManager: dataStoreManager) { (annotation) in
 			
 			if let fetchedAnnotation = annotation {
 				self.savedAnnotation = fetchedAnnotation
@@ -64,7 +64,7 @@ class SearchResultsViewController: UIViewController {
 			return
 		}
 		AnnotationModelManager.saveModel(selectedACAnnotation,
-										 usingStack: coreDataStack)
+										 usingManager: dataStoreManager)
 		refreshSaveEditButton()
 	}
 	
@@ -80,7 +80,7 @@ class SearchResultsViewController: UIViewController {
 		let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { [weak self] (action) in
 			guard let strongSelf = self else { return }
 			AnnotationModelManager.deleteAnnotation(strongSelf.savedAnnotation,
-													usingStack: strongSelf.coreDataStack)
+													usingManager: strongSelf.dataStoreManager)
 			strongSelf.refreshSaveEditButton()
 		}
 		alertController.addAction(cancelAction)
